@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 0, 74, 0.55);
+    height: 55px;
+    font-family: "Gill Sans", "Lucida Grande", Helvetica, sans-serif;
+    font-size:30px;
+    font-weight:400;
+}
+
+.page-view {
+
+}
+
+.profile {
+    width: 600px;
+    height: 300px;
+}
+
+a:link, a:visited, a:hover, a:active{
+    text-decoration:none;
+    color:#fff;
+}
