@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="/css/uikit.min.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/uikit.min.js"></script>
+    <script src="/js/uikit-icons.min.js"></script>
+</head>
+<body>
+<h2 id="Reg-text">用户登录</h2>
+<div id="Form-con">
+    <form id="form1" onsubmit="return false" action="#" method="post">
+        <input type="text" name="username" class="inputStyle" placeholder="请输入账号"><br/>
+        <input type="password" name="password" class="inputStyle" placeholder="请输入密码"><br/>
+        <input type="submit" class="btnStyle" value="登陆" onclick="LoginUser()">
+</div>
+<div id="Result"></div>
+</form>
+</body>
+
+<!-- AJAX提交表单 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function LoginUser() {
+        $.ajax({
+            type: "POST",
+            url: "../admin/login.php" ,
+            data: $('#form1').serialize(),
+            success: function (data) {
+                const result = document.getElementById("Result");
+                if (data[0].result === "success") {
+                    result.innerHTML="成功登录！";
+                    window.location.href="admin/admin.php";
+                } else if (data[0].result === "empty") {
+                    result.innerHTML="账号密码都填不全，太敷衍惹...";
+                } else if (data[0].result === "wrong") {
+                    result.innerHTML="账号或密码有误";
+                } else if (data[0].result === "fail") {
+                    result.innerHTML="啊呜，意料外的错误，请联系狗管理（不";
+                }
+            },
+            error : function(data) {
+                const result = document.getElementById("Result");
+                result.innerHTML="连接服务器失败";
+            }
+        });
+    }
+</script>
+</html>
