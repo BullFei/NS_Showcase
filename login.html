@@ -2,22 +2,81 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>用户登录</title>
-    <link rel="stylesheet" href="/css/uikit.min.css" />
-    <link rel="stylesheet" href="/css/index.css" />
+    <title>欢迎</title>
+    <style type="text/css">
+        body {
+            min-height: 100%;
+            width: 100%;
+            position: absolute;
+            background-image: url("/img/background.jpg");
+            background-size: cover;
+            background-position: center center;
+        }
+        .subtitle {
+            font-size: 36px;
+            font-family: PingFangSC-Regular,PingFang SC;
+            font-weight: 400;
+            color: rgba(255,255,255,1);
+            line-height: 45px;
+            margin-bottom: 0;
+        }
+        .title {
+            font-size:100px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            line-height: 120px;
+            margin-top: 20px;
+        }
+        .titleCon {
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+            margin-top: 90px;
+            margin-left: 60px;
+            padding-left: 10px ;
+            border-left: 2px solid #FFF;
+            z-index: -1;
+        }
+        .formCon {
+            /*width: 220px;*/
+            padding: 30px 30px 10px 30px;
+            /*半透明圆角矩形*/
+            background-color: rgba(255, 255, 255, 0.5);
+            -moz-border-radius: 1em;
+            -webkit-border-radius: 1em;
+            border-radius: 1em;
+        }
+        .loginCon {
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+            margin-top: -230px;
+        }
+    </style>
+    <link rel="stylesheet" href="http://www.getuikit.net/docs/css/uikit.docs.min.css"/>
     <script src="/js/uikit.min.js"></script>
     <script src="/js/uikit-icons.min.js"></script>
 </head>
-<body>
-<h2 id="Reg-text">用户登录</h2>
-<div id="Form-con">
-    <form id="form1" onsubmit="return false" action="#" method="post">
-        <input type="text" name="username" class="inputStyle" placeholder="请输入账号"><br/>
-        <input type="password" name="password" class="inputStyle" placeholder="请输入密码"><br/>
-        <input type="submit" class="btnStyle" value="登陆" onclick="LoginUser()">
+
+<body onload="load();">
+<div class="pageCon">
+    <div class="titleCon">
+        <h4 class="subtitle">Nintendo Switch 陈列柜<br>管理员登录</h4>
+        <h2 class="title">欢<br>迎</h2>
+    </div>
+    <div class="loginCon">
+        <div class="formCon">
+            <form id="form" class="uk-form" onsubmit="return false" action="#" method="post">
+                <div class="uk-form-row"><input class="uk-margin-small-top uk-form-large" autocomplete="off" name="username" type="text" placeholder="用户名:"></div>
+                <div class="uk-form-row"><input class="uk-margin-small-top uk-form-large" name="password" type="password" placeholder="密码:"></div>
+                <div id="Result" style="font-size: 10px;"></div>
+                <img src="img/loginButton.png" style="margin: 15px 0 0 70px" value="登录" onclick="LoginUser()">
+            </form>
+
+        </div>
+    </div>
 </div>
-<div id="Result"></div>
-</form>
 </body>
 
 <!-- AJAX提交表单 -->
@@ -27,16 +86,16 @@
         $.ajax({
             type: "POST",
             url: "../admin/login.php" ,
-            data: $('#form1').serialize(),
+            data: $('#form').serialize(),
             success: function (data) {
                 const result = document.getElementById("Result");
                 if (data[0].result === "success") {
                     result.innerHTML="成功登录！";
                     window.location.href="admin/admin.php";
                 } else if (data[0].result === "empty") {
-                    result.innerHTML="账号密码都填不全，太敷衍惹...";
+                    result.innerHTML="用户名密码都填不全，太敷衍惹...";
                 } else if (data[0].result === "wrong") {
-                    result.innerHTML="账号或密码有误";
+                    result.innerHTML="用户名或密码有误";
                 } else if (data[0].result === "fail") {
                     result.innerHTML="啊呜，意料外的错误，请联系狗管理（不";
                 }
@@ -46,6 +105,11 @@
                 result.innerHTML="连接服务器失败";
             }
         });
+    }
+    function load() {
+        if (document.cookie.indexOf("code=") !== -1) {
+            window.location.href="admin/admin.php";
+        }
     }
 </script>
 </html>
