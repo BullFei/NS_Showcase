@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>游戏管理</title>
+    <link rel="stylesheet" href="http://www.getuikit.net/docs/css/uikit.docs.min.css"/>
+    <script src="/js/uikit.min.js"></script>
+    <script src="/js/uikit-icons.min.js"></script>
+    <style type="text/css">
+        .listCon {
+
+        }
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="listCon">
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <caption>你已经在 Nintendo Switch 游戏上浪费了%time%分钟的人生了呢</caption>
+        <thead>
+        <tr>
+            <th>封面</th>
+            <th>游戏名称</th>
+            <th>总游戏时长</th>
+            <th>评价星级</th>
+            <th>简述</th>
+            <th>功能</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td><img src="http://www.getuikit.net/docs/images/placeholder_200x100.svg" class="uk-thumbnail uk-thumbnail-small"></td>
+            <td>%获取游戏名称%</td>
+            <td>%获取游戏时长%</td>
+            <td>%获取游戏星级%</td>
+            <td width="100">打开一个悬浮编辑器打开一个悬浮编辑器打开一个悬浮编辑器打开一个悬浮编辑器打开一个悬浮编辑器打开一个悬浮编辑器打开一个悬浮编辑器</td>
+            <td>
+                <a class="uk-button uk-button-primary" href="#">更新</a><br>
+                <a class="uk-button uk-button-danger" style="margin-top: 10px" href="#">删除</a>
+            </td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr>
+            <td><img src="http://www.getuikit.net/docs/images/placeholder_200x100.svg" class="uk-thumbnail uk-thumbnail-small"></td>
+            <td><input class="uk-form-row" type="text" placeholder="游戏名称"></td>
+            <td>%输入游戏时长%</td>
+            <td>%输入游戏星级%</td>
+            <td width="200">这没什么字</td>
+            <td><a class="uk-button uk-button-success" href="#">添加</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

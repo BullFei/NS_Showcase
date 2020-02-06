@@ -1,6 +1,6 @@
 <?php
 header('Content-type:application/json');
-require "setting.php";
+require "config.php";
 
 session_start();
 
